@@ -14,3 +14,6 @@ Javascript, TypeScript
 
 ## Yeni proje oluşturmak
 ```ng new ng01-Intro```
+
+## Yeni Componen oluşturma
+```ng generate component product```
