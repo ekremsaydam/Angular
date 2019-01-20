@@ -17,3 +17,6 @@ Javascript, TypeScript
 
 ## Yeni Componen oluşturma
 ```ng generate component product```
+
+### Modül Mantığı
+![Module Mantığı](ApplicationArchitecture.png)
