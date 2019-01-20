@@ -17,6 +17,7 @@ Javascript, TypeScript
 
 ## Yeni Componen oluşturma
 ```ng generate component product```
+```ng g component product```
 
 ### Modül Mantığı
 ![Module Mantığı](ApplicationArchitecture.png)
@@ -42,3 +43,4 @@ Javascript, TypeScript
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 ```
+
