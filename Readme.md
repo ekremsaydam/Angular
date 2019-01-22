@@ -94,6 +94,10 @@ https://alertifyjs.com/
 
 ## Local Servisleri Anlamak
 > component sipesifik olur. Her kullanıcı için örnek yeniden oluşur.
+`{
+  providedIn: 'root'
+}`
+Kısmı silinmelidir.
 
 
 # json-server yükleme
@@ -118,4 +122,25 @@ product.components içerisinde
       this.products = data;
     });
   }
+```
+
+# Observable Mimarisi
+```javascript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../product/Product';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  path = 'http://localhost:3000/products';
+
+  constructor(private http: HttpClient) { }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.path);
+  }
+}
 ```
