@@ -1,4 +1,5 @@
 # Angular Nedir?
+
 - AngularJS
 - Angular 2
 - Angular 4
@@ -7,10 +8,13 @@
 - Angular 7
 
 ## Angular Dili
+
 Javascript, TypeScript
 
 # Angular CLI
+
 ```npm install -g @angular/cli```
+
 ## dependencies and devDependencies 
 - __dependencies__ : Proje görünümüyle alakalı bir durumda kullanılan moduller
 - __devDependencies__ : Geliştiricilerin kullandığı meduller
@@ -97,9 +101,3 @@ https://github.com/typicode/json-server
 
 ## Developer aşamasında Postman ile kullanılır.
 https://www.getpostman.com/
-
-
-
-
-
-
