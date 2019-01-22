@@ -1,4 +1,6 @@
 # Yükleme
+https://alertifyjs.com/
+
 `npm install alertifyjs`
 
 - [x] angular.json içerisindeki scripts tagında belirtiliyor.

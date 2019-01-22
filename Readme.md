@@ -63,6 +63,8 @@ html içine `<a (click)="addToCart(product)" class="btn btn-primary">Sepete Ekle
 ts içerisine `addToCart(product: Product) {`
 
 # ALERTIFYJS Yükleme
+https://alertifyjs.com/
+
 `npm install alertifyjs`
 
 - [x] angular.json içerisindeki scripts tagında belirtiliyor.
@@ -72,6 +74,29 @@ ts içerisine `addToCart(product: Product) {`
 - [x] `Ayrıca ng server --open` durdurularak yeniden başlatılır. Thirt parti uygulamalarda bu şekilde yeniden başlatmak gereklidir.
 
 - [x] `alertify.success('Added');` eklenerek istenilen yerde çalştırılabilir.
+
+# Servislerle Çalışmak
+
+## Global Servisleri Anlamak
+> Bellekte tutulur. Herkes aynı metodu kullanır.
+
+- [x] services klasörü açılır.
+
+- [x] `ng g service alertify` komutundan yararlanılır.
+
+- [x] app.module.ts içerisindeki `providers: [AlertifyService]` eklenirse global servis olacağını tanımlamış oluyoruz.
+
+## Local Servisleri Anlamak
+> component sipesifik olur. Her kullanıcı için örnek yeniden oluşur.
+
+
+# json-server yükleme
+https://github.com/typicode/json-server
+
+`npm install -g json-server`
+
+## Developer aşamasında Postman ile kullanılır.
+https://www.getpostman.com/
 
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './Product';
+import { AlertifyService } from '../services/alertify.service';
 declare let alertify: any;
 
 @Component({
@@ -9,9 +10,9 @@ declare let alertify: any;
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertifyService: AlertifyService) { }
   title = 'Ürün Listesi';
-  filterText = 'm';
+  filterText = '';
   products: Product[] = [
     { id: 1, name: 'Laptop', price: 2500, categoryId: 1, description: 'Asus ZenBook', imageUrl: 'https://images.unsplash.com/photo-1523265987393-d988d7d777d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60' },
     { id: 2, name: 'Mouse', price: 25, categoryId: 2, description: 'A4 Tech', imageUrl: 'https://images.unsplash.com/photo-1523265987393-d988d7d777d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60' },
@@ -24,7 +25,7 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    alertify.success(product.name + ' Added');
+    this.alertifyService.success(product.name + ' added');
   }
 
 }
