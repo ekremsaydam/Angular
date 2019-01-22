@@ -31,6 +31,8 @@ Javascript, TypeScript
 ```ng generate component product```
 ```ng g component product```
 
+> __Komponent ilk yüklendiğinde `OnInit` metodu çalışır.__
+
 ## Pipe
 `<h5 class="card-title">{{product.name}} - <small>{{product.price | currency: 'TRY':true:'1.2-2'}}`
 
@@ -101,3 +103,19 @@ https://github.com/typicode/json-server
 
 ## Developer aşamasında Postman ile kullanılır.
 https://www.getpostman.com/
+
+# HttpClientModule
+
+app.module.ts içerisinde `import { HttpClientModule } from '@angular/common/http';`
+product.component.ts içerisinde `import { HttpClient } from '@angular/common/http';`
+
+product.components içerisinde
+```javascript
+  constructor(private alertifyService: AlertifyService, private http: HttpClient) { }
+
+  ngOnInit() {
+    this.http.get<Product[]>('http://localhost:3000/products').subscribe(data => {
+      this.products = data;
+    });
+  }
+```
