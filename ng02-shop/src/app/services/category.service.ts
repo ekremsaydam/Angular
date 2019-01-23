@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Product } from '../product/Product';
 import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Category } from '../category/category';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ProductService {
-  path = 'http://localhost:3000/products';
+export class CategoryService {
+  path = 'http://localhost:3000/categories';
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.path).pipe(
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.path).pipe(
       tap(data => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -21,7 +21,7 @@ export class ProductService {
     if (err.error instanceof ErrorEvent) {
       errorMessage = 'Bir hata oluştu ' + err.error.message;
     } else {
-      errorMessage = 'Sistemsel bir hata';
+      errorMessage = 'Sistemsel hata oluştu';
     }
 
     return throwError(errorMessage);
