@@ -180,3 +180,79 @@ export class ProductService {
   }
 }
 ```
+
+# Routing Mimarisini Anlamak
+
+> app-routing.module.ts içerisinde
+
+```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ProductComponent } from './product/product.component';
+
+const routes: Routes = [
+  { path: 'products', component: ProductComponent },
+  { path: '', redirectTo: 'products', pathMatch: 'full' },
+  { path: 'products/category/:categoryId', component: ProductComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+> app.component.js içerisinde ise
+
+```html
+<app-nav></app-nav>
+<div class="row">
+	<div class="col-md-2">
+		<app-category></app-category>
+	</div>
+	<div class="col-md-10">
+		<router-outlet></router-outlet>
+	</div>
+</div>
+```
+
+> category.component.html içeriği
+
+```html
+<h3>{{title}}</h3>
+<div class="list-group">
+	<a class="list-group-item active">Tüm Ürünler</a>
+</div>
+
+<div class="list-group" *ngFor='let category of categories'>
+	<a class="list-group-item" routerLink="products/category/{{category.id}}">{{category.name}}</a>
+</div>
+```
+
+> product.component.ts i.eriği
+
+```javascript
+ngOnInit() {
+  this.activatedRoute.params.subscribe(params => {
+    this.productService.getProducts(params['categoryId']).subscribe(data => {
+      this.products = data;
+    });
+  });
+```
+
+> product.service.ts
+
+```javascript
+  getProducts(categoryId): Observable<Product[]> {
+    let newPath = this.path;
+    if (categoryId) {
+      newPath += '?categoryId=' + categoryId;
+    }
+
+    return this.http.get<Product[]>(newPath).pipe(
+      tap(data => console.log(JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+```
