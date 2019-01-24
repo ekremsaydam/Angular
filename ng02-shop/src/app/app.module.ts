@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { ProductFilterPipe } from './product/product-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
+import { ProductAddForms1Component } from './product/product-add-forms1/product-add-forms1.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AlertifyService } from './services/alertify.service';
     CategoryComponent,
     ProductComponent,
     ProductFilterPipe,
+    ProductAddForms1Component,
   ],
   imports: [
     BrowserModule,
