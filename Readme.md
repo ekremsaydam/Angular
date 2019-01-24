@@ -258,7 +258,7 @@ ngOnInit() {
   }
 ```
 
-# NgForm eklemek
+# Klasik Form Eklemek
 
 ```html
 <h3>Yeni Ürün Ekle</h3>
@@ -296,4 +296,99 @@ eklenece yere
 add(form: NgForm) {
     console.log(form.value.name);
 }
+```
+
+# Reaktive Form eklemek
+
+> component içerisinde
+
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from '../Product';
+import { Category } from 'src/app/category/category';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
+
+@Component({
+  selector: 'app-product-add-forms2',
+  templateUrl: './product-add-forms2.component.html',
+  styleUrls: ['./product-add-forms2.component.css'],
+  providers: [CategoryService, ProductService]
+})
+export class ProductAddForms2Component implements OnInit {
+  categoryService: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private categoriService: CategoryService,
+    private productService: ProductService,
+    private alertifyService: AlertifyService
+  ) { }
+
+  productAddForm: FormGroup;
+  product: Product = new Product();
+  categories: Category[];
+
+  createProductAddForm() {
+    this.productAddForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      imageUrl: ['', Validators.required],
+      price: ['', Validators.required],
+      categoryId: ['', Validators.required],
+    });
+  }
+
+  ngOnInit() {
+    this.createProductAddForm();
+    this.categoriService.getCategories().subscribe(data =>
+      this.categories = data
+    );
+  }
+
+  add() {
+    if (this.productAddForm.valid) {
+      this.product = Object.assign({}, this.productAddForm.value);
+    }
+    console.log('İşlem Yapıldı');
+    this.productService.addProduct(this.product).subscribe(data => {
+      this.alertifyService.success(data.name + ' başarıyla eklendi.');
+    });
+
+  }
+
+}
+```
+
+> component html içerisinde
+
+```html
+<h3>Yeni Ürün Ekle - Reactive</h3>
+<form [formGroup]="productAddForm" (ngSubmit)="add()">
+	<div class="form-group">
+		<input type="text" id="name" name="name" formControlName="name" class="form-control" placeholder="Ürün Adı">
+		<div class="alert alert-danger" *ngIf="productAddForm.get('name').hasError('required') && productAddForm.get('name').dirty">Ürün adı zorunludur.</div>
+	</div>
+	<div class="form-group">
+		<input type="text" id="description" name="description" formControlName="description" class="form-control" placeholder="Ürün Açıklaması">
+		<div class="alert alert-danger" *ngIf="productAddForm.get('description').hasError('required') && productAddForm.get('description').dirty">Ürün açıklaması zorunludur.</div>
+	</div>
+	<div class="form-group">
+		<input type="text" id="imageUrl" name="imageUrl" formControlName="imageUrl" class="form-control" placeholder="Ürün Resmi">
+		<div class="alert alert-danger" *ngIf="productAddForm.get('imageUrl').hasError('required') && productAddForm.get('imageUrl').dirty">Fotoğraf Yolu zorunludur.</div>
+	</div>
+	<div class="form-group">
+		<input type="text" id="price" name="price" formControlName="price" class="form-control" placeholder="Ürün Fiyatı">
+		<div class="alert alert-danger" *ngIf="productAddForm.get('price').hasError('required') && productAddForm.get('price').dirty">Ürün Fiyatı zorunludur.</div>
+	</div>
+  <div class="form-group">
+		<select formControlName="categoryId" name="categoryId" id="categoryId" required class="form-control">
+			<option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+		</select>
+		<div *ngIf="productAddForm.get('categoryId').hasError('required') && productAddForm.get('categoryId').touched" class="alert alert-danger">Kategori Gereklidir.</div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">Ürün Ekle</button>
+</form>
 ```

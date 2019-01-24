@@ -23,6 +23,14 @@
       "categoryId": "2",
       "imageUrl": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone8/plus/iphone8-plus-spgray-select-2018?wid=513&hei=556&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1522347735544",
       "id": 3
+    },
+    {
+      "name": "Buzdolabı",
+      "description": "Arçelik no-frost buzdolabı",
+      "imageUrl": "https://www.vestel.com.tr/ProductImages/LargeImagesNew/20310114_r1.png",
+      "price": "2000",
+      "categoryId": "2",
+      "id": 4
     }
   ],
   "categories": [
