@@ -29,6 +29,7 @@ Javascript, TypeScript
 
 ## Yeni Componen oluşturma
 ```ng generate component product```
+
 ```ng g component product```
 
 > __Komponent ilk yüklendiğinde `OnInit` metodu çalışır.__
