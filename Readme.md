@@ -43,6 +43,10 @@ Veriyi filtrelemek için kullanılır.
 Özelleştirilmiş pipe yaratmak için aşağıdaki komut kullanılır.
 >`ng g pipe productFilter`
 
+## Guard Eklemek
+
+`ng g guard login`
+
 ### Modül Mantığı
 ![Module Mantığı](library-module.png)
 
@@ -391,4 +395,65 @@ export class ProductAddForms2Component implements OnInit {
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">Ürün Ekle</button>
 </form>
+```
+
+# Guard ile çalışmak
+
+örnek bir guard tanımı
+
+```javascript
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AccountService } from '../services/account.service';
+
+@Injectable()
+export class LoginGuard implements CanActivate {
+
+  constructor(
+    private accountService: AccountService,
+    private router: Router
+  ) { }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+    const logged = this.accountService.isLoggedIn();
+
+    if (logged) {
+      return true;
+    }
+
+    this.router.navigate(['login']);
+    return false;
+  }
+}
+```
+
+app-routing.module.ts örnek tanımı
+
+```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ProductComponent } from './product/product.component';
+import { ProductAddForms1Component } from './product/product-add-forms1/product-add-forms1.component';
+import { ProductAddForms2Component } from './product/product-add-forms2/product-add-forms2.component';
+import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './login/login.guard';
+
+const routes: Routes = [
+  { path: 'products', component: ProductComponent },
+  { path: '', redirectTo: 'products', pathMatch: 'full' },
+  { path: 'products/category/:categoryId', component: ProductComponent },
+  { path: 'products-add-1', component: ProductAddForms1Component, canActivate: [LoginGuard] },
+  { path: 'products-add-2', component: ProductAddForms2Component },
+  { path: 'login', component: LoginComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
 ```
