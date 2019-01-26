@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { CityComponent } from './city/city.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { CityAddComponent } from './city/city-add/city-add.component';
+import { AlertifyService } from './services/alertify.service';
 
 @NgModule({
    declarations: [
@@ -32,7 +33,7 @@ import { CityAddComponent } from './city/city-add/city-add.component';
       FormsModule,
       ReactiveFormsModule
    ],
-   providers: [],
+   providers: [AlertifyService],
    bootstrap: [
       AppComponent
    ]
