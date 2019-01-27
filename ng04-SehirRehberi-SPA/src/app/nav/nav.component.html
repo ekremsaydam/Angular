@@ -19,9 +19,11 @@
         <a class="nav-link" href="#">About</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    <form *ngIf="!isAuthentication" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="User Name" name="username" [(ngModel)]="loginUser.userName" required>
+      <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" [(ngModel)]="loginUser.password" required>
+      <button class="btn btn-secondary my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
     </form>
+    <button class="btn btn-secondary my-2 my-sm-0" *ngIf="isAuthentication" (click)="logOut()" type="submit">LogOut</button>
   </div>
 </nav>

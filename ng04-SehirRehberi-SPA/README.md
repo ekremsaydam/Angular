@@ -39,3 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npm install ngx-gallery`
 
 `npm install rxjs-compat`
+
+`npm install angular2-jwt`
+
+`npm install @angular/http`
