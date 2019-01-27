@@ -47,3 +47,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npm install ngx-editor`
 
 `npm install ngx-bootstrap`
+
+`npm install ng2-file-upload --save`

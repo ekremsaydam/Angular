@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { City } from 'src/app/models/city';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-city-add',
@@ -16,6 +17,7 @@ export class CityAddComponent implements OnInit {
   constructor(
     private cityService: CityService,
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   city: City;
@@ -38,7 +40,7 @@ export class CityAddComponent implements OnInit {
 
       // Todo
 
-      this.city.userId = 1;
+      this.city.userId = this.authService.getCurrentUserId();
       this.cityService.add(this.city);
     }
   }
