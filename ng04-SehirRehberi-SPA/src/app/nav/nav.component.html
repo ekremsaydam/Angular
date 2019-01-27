@@ -16,7 +16,7 @@
         <a class="nav-link" routerLink="cityadd" outerlinkActive="active">Şehir Ekle</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" routerLink="register" outerlinkActive="active">Register</a>
       </li>
     </ul>
     <form *ngIf="!isAuthentication" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">

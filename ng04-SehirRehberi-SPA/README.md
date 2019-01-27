@@ -43,3 +43,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npm install angular2-jwt`
 
 `npm install @angular/http`
+
+`npm install ngx-editor`
+
+`npm install ngx-bootstrap`

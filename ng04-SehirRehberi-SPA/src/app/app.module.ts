@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { CityComponent } from './city/city.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { CityAddComponent } from './city/city-add/city-add.component';
 import { AlertifyService } from './services/alertify.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +24,8 @@ import { AlertifyService } from './services/alertify.service';
       NavComponent,
       CityComponent,
       CityDetailComponent,
-      CityAddComponent
+      CityAddComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
@@ -31,9 +34,12 @@ import { AlertifyService } from './services/alertify.service';
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      NgxEditorModule
    ],
-   providers: [AlertifyService],
+   providers: [
+      AlertifyService
+   ],
    bootstrap: [
       AppComponent
    ]
