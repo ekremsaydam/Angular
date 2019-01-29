@@ -1,0 +1,25 @@
+<p>
+	{{title}}
+</p>
+<div class="form-group">
+	<input type="text" class="form-control" [(ngModel)]="filterText" placeholder="enter your filter text">
+</div>
+<div class="form-group" *ngIf="filterText">
+	<label for="">Your search for <strong>{{filterText}}</strong></label>
+</div>
+<table class="table table-responsive">
+	<thead>
+		<th>Product Id</th>
+		<th>Category Id</th>
+		<th>Product Name</th>
+		<th>Unit Price</th>
+		<th>Units In Stok</th>
+	</thead>
+	<tr *ngFor="let item of products | productsfilter:filterText">
+		<td>{{item.productId}}</td>
+		<td>{{item.categoryId}}</td>
+		<td>{{item.productName | lowercase}}</td>
+		<td>{{item.unitPrice | currency:'TR':'':'3.2-2' }}</td>
+		<td>{{item.unitsInStok}}</td>
+	</tr>
+</table>
