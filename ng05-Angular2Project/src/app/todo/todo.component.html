@@ -1,3 +1,18 @@
-<p>
-  todo works!
-</p>
+<table class="table table-response">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>UserId</th>
+      <th>Title</th>
+      <th>Component</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos">
+      <td>{{todo.id}}</td>
+      <td>{{todo.userId}}</td>
+      <td>{{todo.title}}</td>
+      <td>{{todo.completed}}</td>
+    </tr>
+  </tbody>
+</table>
