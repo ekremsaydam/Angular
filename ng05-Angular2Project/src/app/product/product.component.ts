@@ -15,7 +15,7 @@ export class ProductComponent implements OnInit {
   // productService = new ProductService();
 
   title = 'Product List';
-  products: Product[];
+  products: Product[] = [];
   filterText: string;
 
   getProduct(): void {
